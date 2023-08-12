@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     float rotationX, rotationY;
     private void Awake()
     {
-        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
