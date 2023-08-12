@@ -19,12 +19,11 @@ public class Editor_ShapeGenrator : Editor
         mat_Base = levelDesigner.mat_Base;
 
         SceneView.duringSceneGui += DuringSceneGUI;
-        Debug.Log("OnEnable" );
+
     }
 
     void OnDisable()
     {
-        Debug.Log("On Disable");
         SceneView.duringSceneGui -= DuringSceneGUI;
     }
 
@@ -32,7 +31,7 @@ public class Editor_ShapeGenrator : Editor
     {
         if (target == null || !levelDesigner.gameObject.activeInHierarchy)
         {
-            Debug.LogError("Need to have refrence in scene");
+            Debug.LogError("Need to have this level designer scirpt  in scene");
             return;
         }
 
@@ -69,4 +68,33 @@ public class Editor_ShapeGenrator : Editor
             }
         }
     }
+
+    public override void OnInspectorGUI()
+    {
+
+
+
+        // Style for the title
+        GUIStyle titleStyle = new GUIStyle(EditorStyles.boldLabel);
+        titleStyle.alignment = TextAnchor.MiddleCenter;
+        titleStyle.fontSize = 20;
+        titleStyle.richText = true;
+        titleStyle.normal.textColor = new Color(0.1f, 0.4f, 0.8f); // Custom color
+
+        // Display the title
+        GUILayout.Label("<b>Shape Designer Tool</b>", titleStyle);
+
+        GUILayout.Space(20);
+
+        base.OnInspectorGUI();
+
+        GUILayout.Space(20);
+
+        GUILayout.Label("Instructions:", EditorStyles.boldLabel);
+        GUILayout.Label("- Lock this Inspector to prevent accidental changes.", EditorStyles.wordWrappedLabel);
+        GUILayout.Label("- Use the Left Mouse Click to apply Shape Material.", EditorStyles.wordWrappedLabel);
+        GUILayout.Label("- Use the Right Mouse Click to Reset Material.", EditorStyles.wordWrappedLabel);
+
+    }
+
 }

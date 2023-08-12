@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: Square
   availableColors:
-  - {r: 1, g: 0.6825919, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 1, g: 0, b: 1, a: 1}
+  - {r: 0.9529412, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.5254902, a: 1}
   prefab: {fileID: 7814347896902976447, guid: e560d1e99d8b7b342942de8be1eb150d, type: 3}
