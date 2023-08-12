@@ -638,7 +638,6 @@ MonoBehaviour:
   playerTransform: {fileID: 1665495476}
   minSpawnDistance: 20
   maxSpawnDistance: 40
-  go_TargetShape: {fileID: 0}
 --- !u!4 &1359471045
 Transform:
   m_ObjectHideFlags: 0

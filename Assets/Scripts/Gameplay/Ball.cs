@@ -21,15 +21,24 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity= Vector3.zero;
 
-        rb.AddForce( transform.forward * shootForce,ForceMode.Impulse);
+        rb.velocity = transform.forward * shootForce;
     }
 
 
 
-
+    [SerializeField] int collisionForce = 110;
     void OnCollisionEnter(Collision collision)
     {
-        //instantlly we will distable ball
+        if(collision.collider.CompareTag("ShapeElement"))
+        {
+            Debug.Log("We hit Shape");
+            collision.rigidbody.AddForce(transform.forward.normalized * collisionForce, ForceMode.Impulse);
+
+            ShapeController shapeController = collision.collider.GetComponentInParent<ShapeController>();
+            if (shapeController)
+                shapeController.ActivateSelfDestruct();
+        }
+
         DisableBall();
     }
 

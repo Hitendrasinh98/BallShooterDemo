@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationSpeedX = 5f;
 
     float rotationX, rotationY;
+    float inputX, inputY;
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -17,18 +18,18 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Handle player movement
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput);
+        inputX = Input.GetAxis("Horizontal");
+        inputY= Input.GetAxis("Vertical");
+        Vector3 moveDirection = new Vector3(inputX, 0f, inputY);
         moveDirection = transform.TransformDirection(moveDirection).normalized;
-
+        moveDirection.y = 0;
         transform.position += (moveDirection * moveSpeed * Time.deltaTime);
 
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        inputX = Input.GetAxis("Mouse X");
+        inputY = Input.GetAxis("Mouse Y");
 
-        rotationX -= mouseY * rotationSpeedX * Time.deltaTime;
-        rotationY += mouseX * rotationSpeedY * Time.deltaTime;
+        rotationX -= inputY * rotationSpeedX * Time.deltaTime;
+        rotationY += inputX * rotationSpeedY * Time.deltaTime;
 
         
         rotationX = Mathf.Clamp(rotationX, -45f, 45f); // Adjust the range as needed
