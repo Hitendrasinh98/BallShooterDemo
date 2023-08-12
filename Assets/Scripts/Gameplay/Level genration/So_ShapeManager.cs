@@ -1,23 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GameData/ShapeManager",order =0)]
 public class So_ShapeManager : ScriptableObject
 {
+    [SerializeField] TextAsset jsonFile;
     [SerializeField] List<So_Shape> mShapes;
+    
+    [HideInInspector]public string letestJsonData; //for Custom Editor to see the jsonData 
 
-    [HideInInspector]public string letestJsonData;
+    #region Shapes Featres
 
+    public void RefreshData()
+    {
+        Debug.Log("Loading JsonData");
+        string[] lines =  jsonFile.text.Split('\n');
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (lines[i].Length < 5)
+                continue;
+
+            //loading json Data
+            SerializableShape shapeData = JsonUtility.FromJson<SerializableShape>(lines[i]);
+            for (int j = 0; j < mShapes.Count; j++)
+            { 
+                //matching shape type in our AvailableShapes list
+                if(shapeData.type == mShapes[j].GetShapeType())
+                {
+                    //Converting hex into colors
+                    List<Color> availableColors = ConvertHexsIntoColors(shapeData.availableColors);
+            
+                    //Saving data back to scriptable object
+                    mShapes[j].SetAvailableColors(availableColors);
+                    break;
+                }
+
+                if(j== mShapes.Count -1)                
+                    Debug.LogError("We didnt find the match for this Shape :" + shapeData.type);
+                
+            }
+            
+        }
+    }
+
+    #endregion
+
+
+    #region JsonData Funtionality
+
+    /// <summary>
+    /// Will convert SO shapes data into json
+    /// and custom editor tool will display with nice formate on inspecotor
+    /// need to copy that text and paste into our json.txt file if we want to implement that data
+    /// </summary>
     public void SaveIntoJson()
     {
+        //Creating serializatble json data from Shapes Data
         List<SerializableShape> serializableShapes = new List<SerializableShape>();
         foreach (So_Shape shape in mShapes)
         {
-            serializableShapes.Add(new SerializableShape(shape.GetShapeType() , GetAvailableColorsHex( shape.GetAvailableColors())));
+            serializableShapes.Add(new SerializableShape(shape.GetShapeType() , ConvertColorsIntoHexs( shape.GetAvailableColors())));
         }
-
+        //Converting serializable data into jsonString
         string[] jsonData = new string[serializableShapes.Count];
         string debugJson = "";
         for (int i = 0; i < serializableShapes.Count; i++)
@@ -27,26 +72,26 @@ public class So_ShapeManager : ScriptableObject
             debugJson += FormatColorStrings( jsonData[i]);
         }
 
-        string filePath = Application.persistentDataPath + "/jsonData.txt";
-
-        File.WriteAllLines(filePath, jsonData);
-        Debug.Log("We have successfully saved Json data here... ");
-        Debug.Log("<size=12><color=Green>" + filePath + " </color></size>");
+        //Caching the jsonData for custom editor tool
         letestJsonData = debugJson;
     }
 
-
+    /// <summary>
+    /// this is helper funtion to add the formate of text in json text 
+    /// NOTE : This can only be used for debug cause it will add some tags into json text
+    /// </summary>
+    /// <param name="json"></param>
+    /// <returns></returns>
     string FormatColorStrings(string json)
     {
         string pattern = "\"#([0-9a-fA-F]{6})\"";
-        System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
-        System.Text.RegularExpressions.MatchCollection matches = regex.Matches(json);
+        System.Text.RegularExpressions.MatchCollection matches = System.Text.RegularExpressions.Regex.Matches(json, pattern);
 
         List<string> hexColorStrings = new List<string>();
         foreach (System.Text.RegularExpressions.Match match in matches)
         {
-            string hexColor = match.Groups[1].Value;
-            string formattedColor = "<color=#" + hexColor + ">" + hexColor + "</color>";
+            string hexColor = "#" + match.Groups[1].Value;
+            string formattedColor = "<color=" + hexColor + ">\"" + hexColor + "\"</color>";
             hexColorStrings.Add(formattedColor);
         }
 
@@ -60,8 +105,12 @@ public class So_ShapeManager : ScriptableObject
 
 
 
-
-    public List<string> GetAvailableColorsHex(List<Color> _availableColors)
+    /// <summary>
+    /// used to convert the color into hex code so that we can easyly see in inspecor which colors are used
+    /// </summary>
+    /// <param name="_availableColors"></param>
+    /// <returns></returns>
+    public List<string> ConvertColorsIntoHexs(List<Color> _availableColors)
     {
         List<string> hexColors = new List<string>();
         for (int i = 0; i < _availableColors.Count; i++)
@@ -72,6 +121,22 @@ public class So_ShapeManager : ScriptableObject
         return hexColors;
     }
 
+    public List<Color> ConvertHexsIntoColors(List<string> _availableColorsHex)
+    {
+        List<Color> convertedColors= new List<Color>();
+        for (int i = 0; i < _availableColorsHex.Count; i++)
+        {
+            Color color= HexToColor(_availableColorsHex[i]);
+            convertedColors.Add(color);
+        }
+        return convertedColors;
+    }
+
+    /// <summary>
+    /// Convert back to color from hex code
+    /// </summary>
+    /// <param name="hex"></param>
+    /// <returns></returns>
     Color HexToColor(string hex)
     {
         hex = hex.TrimStart('#');
@@ -89,6 +154,12 @@ public class So_ShapeManager : ScriptableObject
         return new Color32(r, g, b, 255);
     }
 
+
+    /// <summary>
+    /// Convert color into hex code to save into json
+    /// </summary>
+    /// <param name="_color"></param>
+    /// <returns></returns>
     string ColorToHex(Color _color)
     {
         string hexColor = "#" + ColorUtility.ToHtmlStringRGB(_color);
@@ -96,6 +167,13 @@ public class So_ShapeManager : ScriptableObject
     }
 
 
+    #endregion
+
+
+
+    /// <summary>
+    /// Special  struct to store data into the json
+    /// </summary>
     [System.Serializable]
     struct SerializableShape
     {

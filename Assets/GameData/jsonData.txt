@@ -1,0 +1,2 @@
+{"type":"Square","availableColors":["#FF0000","#F3FF00","#FF0086"]}
+{"type":"Circle","availableColors":["#3DFF00","#00FFB2","#000DFF"]}

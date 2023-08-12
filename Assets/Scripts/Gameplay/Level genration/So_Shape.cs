@@ -16,6 +16,8 @@ public class So_Shape : ScriptableObject
     public string GetShapeType() => type;
 
     public List<Color> GetAvailableColors() => availableColors;
+
+    public void SetAvailableColors(List<Color> _availableColors) => availableColors = _availableColors;
     
 }
 

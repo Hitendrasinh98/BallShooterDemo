@@ -4,6 +4,12 @@ using UnityEngine;
 
 using UnityEditor;
 
+/// <summary>
+/// Custom editor for Shape Manager to have certain features
+/// like to  see the json data and convert json data
+/// have color aplied onto the jsonData shapes AvailbelColors to visualize it
+/// </summary>
+
 [CustomEditor(typeof(So_ShapeManager))]
 public class Editor_ShapeManager : Editor
 {
@@ -35,7 +41,7 @@ public class Editor_ShapeManager : Editor
         serializedObject.Update();
 
         So_ShapeManager yourComponent = (So_ShapeManager)target;
-        GUILayout.Space(15);
+        GUILayout.Space(50);
 
         if (GUILayout.Button("Genrate Json", customButtonStyle))
         {

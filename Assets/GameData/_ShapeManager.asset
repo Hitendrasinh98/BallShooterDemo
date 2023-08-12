@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 036fb662c6cd5914b85a2613ebd5ee77, type: 3}
-  m_Name: Shapes
+  m_Name: _ShapeManager
   m_EditorClassIdentifier: 
+  jsonFile: {fileID: 4900000, guid: a7c1259500fae274faa5f4f0dab725c7, type: 3}
   mShapes:
   - {fileID: 11400000, guid: 5ffedced6f7402f4fa9396932f70891c, type: 2}
-  - {fileID: 11400000, guid: 5ffedced6f7402f4fa9396932f70891c, type: 2}
+  - {fileID: 11400000, guid: ca0236c779ea59141b9867245c26d034, type: 2}
+  letestJsonData: '{"type":"Square","availableColors":[<color=#FFAE00>FFAE00</color>,<color=#FF0000>FF0000</color>,<color=#FF00FF>FF00FF</color>]}
+
+    {"type":"Circle","availableColors":[<color=#47FF00>47FF00</color>,<color=#00DDFF>00DDFF</color>,<color=#001AFF>001AFF</color>]}'
