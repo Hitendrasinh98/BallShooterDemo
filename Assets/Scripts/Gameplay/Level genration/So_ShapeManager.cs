@@ -44,6 +44,13 @@ public class So_ShapeManager : ScriptableObject
         }
     }
 
+
+    public So_Shape GetRandomShape()
+    {
+        int index = Random.Range(0, mShapes.Count);
+
+        return mShapes[index];
+    }
     #endregion
 
 
