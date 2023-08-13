@@ -2,7 +2,7 @@
 This is Ball Shooter Demo Game made in unity v2019.4.22f lts URP.
 
 The Tools and Plugins Used:
-- DoTween engine (for Animations)
+- DoTween engine (for Animations) NOTE :Need to import this Free Plugin from assetStore
 - Default URP Example Assets
 
 GameFlow Inforamtion:
