@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41153e25c45a07a4681c9184902bc515, type: 3}
-  m_Name: CircleShape
+  m_Name: Eclipse
   m_EditorClassIdentifier: 
-  type: Circle
+  type: Eclipse
   availableColors:
-  - {r: 0.23921569, g: 1, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.69803923, a: 1}
-  - {r: 0, g: 0.050980393, b: 1, a: 1}
-  prefab: {fileID: 3704072502534747635, guid: e560d1e99d8b7b342942de8be1eb150d, type: 3}
+  - {r: 0.8862745, g: 1, b: 0, a: 1}
+  - {r: 0.09019608, g: 1, b: 0, a: 1}
+  - {r: 0.26666668, g: 0, b: 1, a: 1}
+  prefab: {fileID: 6466163218533848643, guid: 3525ba6957db5dc4d9a5fbc9401f62c8, type: 3}

@@ -6,12 +6,14 @@ using System;
 [RequireComponent(typeof( ShapeColorAssigner))]
 public class ShapeController : MonoBehaviour
 {
-    ShapeColorAssigner shapeColorAssigner;
+    [SerializeField] AudioSource sourceShoot;
+
 
     [Header("Current Progress")]
     [SerializeField] bool isSelfDestructionActivated;
 
-     Action OnShapeDameged;
+    ShapeColorAssigner shapeColorAssigner;
+    Action OnShapeDameged;
     public  void Register_OnShapeDamaged(Action _callback) => OnShapeDameged = _callback;
 
     private void Awake()
@@ -21,12 +23,14 @@ public class ShapeController : MonoBehaviour
 
     public void SetShape(List<Color> availableColors)
     {
+        isSelfDestructionActivated = false;
         shapeColorAssigner.SetShapesColors(availableColors);
     }
 
 
     public void ActivateSelfDestruct()
     {
+        sourceShoot.PlayOneShot(sourceShoot.clip);
         if (isSelfDestructionActivated)
             return;
         Debug.Log("this shape is damaged and self destruct activate in 5 seconds");

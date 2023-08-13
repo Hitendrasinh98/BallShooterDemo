@@ -14,10 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jsonFile: {fileID: 4900000, guid: a7c1259500fae274faa5f4f0dab725c7, type: 3}
   mShapes:
-  - {fileID: 11400000, guid: 5ffedced6f7402f4fa9396932f70891c, type: 2}
   - {fileID: 11400000, guid: ca0236c779ea59141b9867245c26d034, type: 2}
-  letestJsonData: '{"type":"Square","availableColors":[<color=#FF0000>"#FF0000"</color>,<color=#F3FF00>"#F3FF00"</color>,<color=#FF0086>"#FF0086"</color>]}
+  - {fileID: 11400000, guid: b789ac0335207e146a221cd865f53ba0, type: 2}
+  - {fileID: 11400000, guid: 9022fa426be052449bb1f32e1e2b276b, type: 2}
+  - {fileID: 11400000, guid: 590b28b5a586b264ea7105c00cba0561, type: 2}
+  - {fileID: 11400000, guid: 5ffedced6f7402f4fa9396932f70891c, type: 2}
+  letestJsonData: '{"type":"Circle","availableColors":[<color=#3DFF00>"#3DFF00"</color>,<color=#00FFB2>"#00FFB2"</color>,<color=#000DFF>"#000DFF"</color>]}
 
-    {"type":"Circle","availableColors":[<color=#3DFF00>"#3DFF00"</color>,<color=#00FFB2>"#00FFB2"</color>,<color=#000DFF>"#000DFF"</color>]}
+    {"type":"Eclipse","availableColors":[<color=#E2FF00>"#E2FF00"</color>,<color=#17FF00>"#17FF00"</color>,<color=#4400FF>"#4400FF"</color>]}
 
-    {"type":"Circle","availableColors":[<color=#3DFF00>"#3DFF00"</color>,<color=#00FFB2>"#00FFB2"</color>,<color=#000DFF>"#000DFF"</color>]}'
+    {"type":"Pyramid","availableColors":[<color=#FF7F00>"#FF7F00"</color>,<color=#FF00DC>"#FF00DC"</color>,<color=#00CAFF>"#00CAFF"</color>]}
+
+    {"type":"Rectangle","availableColors":[<color=#FF00CB>"#FF00CB"</color>,<color=#3E0098>"#3E0098"</color>,<color=#469567>"#469567"</color>]}
+
+    {"type":"Square","availableColors":[<color=#FF0000>"#FF0000"</color>,<color=#F3FF00>"#F3FF00"</color>,<color=#FF0086>"#FF0086"</color>]}'

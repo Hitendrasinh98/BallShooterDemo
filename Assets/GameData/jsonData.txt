@@ -1,2 +1,5 @@
-{"type":"Square","availableColors":["#FF0000","#F3FF00","#FF0086"]}
 {"type":"Circle","availableColors":["#3DFF00","#00FFB2","#000DFF"]}
+{"type":"Eclipse","availableColors":["#E2FF00","#17FF00","#4400FF"]}
+{"type":"Pyramid","availableColors":["#FF7F00","#FF00DC","#00CAFF"]}
+{"type":"Rectangle","availableColors":["#FF00CB","#3E0098","#469567"]}
+{"type":"Square","availableColors":["#FF0000","#F3FF00","#FF0086"]}
