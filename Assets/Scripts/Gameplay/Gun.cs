@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Gun Controller to shoot balls and effects
+/// </summary>
+
 public class Gun : MonoBehaviour
 {
     [SerializeField] Transform firePoint;
     [SerializeField] AudioSource sourceShoot;
+
+
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))

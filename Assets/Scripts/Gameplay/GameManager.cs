@@ -3,7 +3,7 @@
 public class GameManager : MonoBehaviour
 {
 
-    [SerializeField] So_ShapeManager shapeManager;
+    [SerializeField] So_ShapeManager shapeManager;      //Scriptable objet with all the shapes data and refrences
     [SerializeField] Transform playerTransform;
     [SerializeField] float minSpawnDistance;
     [SerializeField] float maxSpawnDistance;
@@ -13,16 +13,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Application.targetFrameRate = 60;
         InitializeData();
         SpawnShape();
     }
 
-
+    /// <summary>
+    /// Initialize all the data 
+    /// </summary>
     void InitializeData()
     {
+        Application.targetFrameRate = 60;
         shapeManager.RefreshData();
     }
+
+    /// <summary>
+    /// Spawn a random shape from avaialbe shapes
+    /// </summary>
 
     [ContextMenu("Test Spawn")]
     void SpawnShape()
@@ -48,6 +54,10 @@ public class GameManager : MonoBehaviour
         Debug.Log("Spawned new Shape :" + randomShape.GetShapeType());
     }
 
+
+    /// <summary>
+    /// Called when the spaned shape object is destroyed
+    /// </summary>
     void Callback_OnShapeDamaged()
     {
         SpawnShape();

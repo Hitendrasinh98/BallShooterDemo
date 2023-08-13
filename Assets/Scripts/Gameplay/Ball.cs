@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// Controll the movement and collision of balls that are shooted from gun
+/// </summary>
 public class Ball : MonoBehaviour
 {
     [SerializeField]Rigidbody rb;
@@ -17,10 +19,11 @@ public class Ball : MonoBehaviour
         }
 
         //auto distruction incase ball didnt collide with anthing
-        Invoke("DisableBall", 4);
+        Invoke("DisableBall", 3);
+        //Reseting all the ovemtn if this ball has
         rb.velocity = Vector3.zero;
         rb.angularVelocity= Vector3.zero;
-
+        //applying forceinto forward direction
         rb.velocity = transform.forward * shootForce;
     }
 
@@ -32,13 +35,16 @@ public class Ball : MonoBehaviour
         if(collision.collider.CompareTag("ShapeElement"))
         {
             Debug.Log("We hit Shape");
+            //adding the extra force to the collided objects
             collision.rigidbody.AddForce(transform.forward.normalized * collisionForce, ForceMode.Impulse);
 
+            //activating self destruction to that shape
             ShapeController shapeController = collision.collider.GetComponentInParent<ShapeController>();
             if (shapeController)
                 shapeController.ActivateSelfDestruct();
         }
 
+        //disablng this ball back to the pool
         DisableBall();
     }
 
