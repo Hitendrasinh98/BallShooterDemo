@@ -10,11 +10,7 @@ public class PlayerController : MonoBehaviour
 
     float rotationX, rotationY;
     float inputX, inputY;
-    private void Awake()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
+  
     void Update()
     {
         // Handle player movement

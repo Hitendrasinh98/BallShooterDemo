@@ -12,7 +12,8 @@ public class ShapeColorAssigner : MonoBehaviour
         for (int i = 0; i < mShapeElements.Count; i++)
         {
             Color randomColor = availableColors[Random.Range(0, availableColors.Count)];
-            mShapeElements[i].material.SetColor("_BaseColor", randomColor); 
+            mShapeElements[i].material.SetColor("_BaseColor", randomColor);
+            mShapeElements[i].material.SetColor("_EmissionColor", randomColor * 2.5f);            
         }
     }    
 }

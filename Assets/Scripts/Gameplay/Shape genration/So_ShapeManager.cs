@@ -51,6 +51,21 @@ public class So_ShapeManager : ScriptableObject
 
         return mShapes[index];
     }
+
+    public So_Shape GetShapeByType(string type)
+    {
+        for (int i = 0; i < mShapes.Count; i++)
+        {
+            if(mShapes[i].GetShapeType() == type)
+            {
+                return mShapes[i];
+            }
+        }
+        Debug.LogError("Didnt find the type :" + type);
+        return mShapes[0];
+
+    }
+
     #endregion
 
 

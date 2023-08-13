@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     {
         InitializeData();
         SpawnShape();
+        UiManager.Register_OnClickSpawn(SpawnShape);
     }
 
     /// <summary>
@@ -29,12 +30,12 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Spawn a random shape from avaialbe shapes
     /// </summary>
-
     [ContextMenu("Test Spawn")]
-    void SpawnShape()
-    {       
+    void SpawnShape(string shapeType = "")
+    {
+
         //Geting random Shape for availbe shapes
-        So_Shape randomShape =  shapeManager.GetRandomShape();
+        So_Shape randomShape = string.IsNullOrEmpty(shapeType) ? shapeManager.GetRandomShape() : shapeManager.GetShapeByType(shapeType);
 
         //Genrating Random location and rotation
         Vector2 randomPoint = Random.insideUnitCircle.normalized;       
