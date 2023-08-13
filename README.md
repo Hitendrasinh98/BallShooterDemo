@@ -6,10 +6,9 @@ The Tools and Plugins Used:
 -Default URP Example Assets
 
 GameFlow Inforamtion:
--as soon as Game Start, GameManager is handling the flow of the game with loading data from jsonFile and spawning random shape at random location with random distance around player.
+-as soon as Game Start, jsonFile data is loaded and spawning random shape at random location with random distance around player.
 -Player can move around and look around and can shoot balls.
--shap is made of lot of cubes togethor placed like a big wall and some cube got applied random color from jsonData about that shape to highlight the final visual of shape.
--Each shape got collider and rigidbody so if player shoot ball ,it can intract like real world collision.
+-Each shape got lot of cubes and each cubes got collider and rigidbody so if player shoot ball ,it can intract like real world collision.
 -shooted ball will move at high speed and  wherever collide it will give certain force to contacted objects to make it more fun.
 -once ball collide with any cube of shape then that shape get destroy in 8 seconds and new shape is gerated.
 
